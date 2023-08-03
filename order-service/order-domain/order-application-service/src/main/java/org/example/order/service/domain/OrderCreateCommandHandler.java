@@ -1,4 +1,4 @@
-package org.example.order.service.domain.ports;
+package org.example.order.service.domain;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
