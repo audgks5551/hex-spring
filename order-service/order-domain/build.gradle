@@ -1,0 +1,5 @@
+project(":order-service:order-domain:order-application-service") {
+    dependencies {
+        compileOnly project(":order-service:order-domain:order-domain-core")
+    }
+}

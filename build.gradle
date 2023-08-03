@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+bootJar {
+    enabled = false
+}
+
+subprojects {
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+
+    java {
+        sourceCompatibility = '17'
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
+
+project(":order-service:order-dataaccess") {
+    dependencies {
+        compileOnly project(":order-service:order-domain:order-application-service")
+    }
+}
+
+project(":order-service:order-messaging") {
+    dependencies {
+        compileOnly project(":order-service:order-domain:order-application-service")
+    }
+}
+
+project(":order-service:order-application") {
+    dependencies {
+        compileOnly project(":order-service:order-domain:order-application-service")
+    }
+}
+
+project(":order-service:order-container") {
+    dependencies {
+        compileOnly project(":order-service:order-domain:order-domain-core")
+        compileOnly project(":order-service:order-domain:order-application-service")
+        compileOnly project(":order-service:order-application")
+        compileOnly project(":order-service:order-dataaccess")
+        compileOnly project(":order-service:order-messaging")
+    }
+}
