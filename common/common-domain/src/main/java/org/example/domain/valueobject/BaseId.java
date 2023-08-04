@@ -2,7 +2,7 @@ package org.example.domain.valueobject;
 
 import java.util.Objects;
 
-public class BaseId<T> {
+public abstract class BaseId<T> {
     private final T value;
 
     protected BaseId(T value) {

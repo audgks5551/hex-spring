@@ -1,3 +1,17 @@
 bootJar {
     enabled = false
 }
+
+project(":order-service:order-application") {
+    dependencies {
+        implementation project(":order-service:order-domain:order-application-service")
+        implementation project(":order-service:order-domain:order-domain-core")
+    }
+}
+
+project(":order-service:order-dataaccess") {
+    dependencies {
+        implementation project(":order-service:order-domain:order-application-service")
+        implementation project(":order-service:order-domain:order-domain-core")
+    }
+}

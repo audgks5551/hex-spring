@@ -1,13 +1,11 @@
 project(":order-service:order-domain:order-application-service") {
     dependencies {
-        compileOnly project(":order-service:order-domain:order-domain-core")
-        compileOnly project(":common:common-domain")
+        implementation project(":order-service:order-domain:order-domain-core")
     }
 }
 
 project(":order-service:order-domain:order-domain-core") {
     dependencies {
-        compileOnly project(":common:common-domain")
     }
 }
 

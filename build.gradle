@@ -36,7 +36,10 @@ subprojects {
     }
 
     dependencies {
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation project(":common:common-domain")
+        implementation project(":common:common-application")
     }
 
     tasks.named('test') {
@@ -46,28 +49,28 @@ subprojects {
 
 project(":order-service:order-dataaccess") {
     dependencies {
-        compileOnly project(":order-service:order-domain:order-application-service")
+        implementation project(":order-service:order-domain:order-application-service")
     }
 }
 
 project(":order-service:order-messaging") {
     dependencies {
-        compileOnly project(":order-service:order-domain:order-application-service")
+        implementation project(":order-service:order-domain:order-application-service")
     }
 }
 
 project(":order-service:order-application") {
     dependencies {
-        compileOnly project(":order-service:order-domain:order-application-service")
+        implementation project(":order-service:order-domain:order-application-service")
     }
 }
 
 project(":order-service:order-container") {
     dependencies {
-        compileOnly project(":order-service:order-domain:order-domain-core")
-        compileOnly project(":order-service:order-domain:order-application-service")
-        compileOnly project(":order-service:order-application")
-        compileOnly project(":order-service:order-dataaccess")
-        compileOnly project(":order-service:order-messaging")
+        implementation project(":order-service:order-domain:order-domain-core")
+        implementation project(":order-service:order-domain:order-application-service")
+        implementation project(":order-service:order-application")
+        implementation project(":order-service:order-dataaccess")
+        implementation project(":order-service:order-messaging")
     }
 }
